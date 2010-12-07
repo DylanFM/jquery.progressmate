@@ -36,8 +36,9 @@
       max: 100,
       min: 0,
       width: 160,
-      height: 32,
-      fill: '90-#fff-#000'
+      height: 20,
+      bg_fill: '90-#efefef-#e0e0e0-#ececec-#b2b2b2',
+      bar_fill: '90-#aed9ef-#4ba7e5-#9ac6e7-#245ebb'
     };
     ProgressDisplay.prototype.setValue = function(value) {
       var width;
@@ -51,8 +52,16 @@
     };
     ProgressDisplay.prototype.setupCanvas = function() {
       this.canvas = Raphael(this.mate.get()[0], this.opts.width, this.opts.height);
-      this.bar = this.canvas.rect(0, 0, 0, this.opts.height);
-      return this.bar.attr('fill', this.opts.fill);
+      this.bg = this.canvas.rect(0, 0, this.opts.width, this.opts.height, 5);
+      this.bg.attr({
+        fill: this.opts.bg_fill,
+        'stroke-width': 0
+      });
+      this.bar = this.canvas.rect(0, 0, 0, this.opts.height, 5);
+      return this.bar.attr({
+        fill: this.opts.bar_fill,
+        'stroke-width': 0
+      });
     };
     return ProgressDisplay;
   }();

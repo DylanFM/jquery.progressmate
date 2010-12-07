@@ -57,8 +57,9 @@ class ProgressDisplay
     max: 100
     min: 0
     width: 160
-    height: 32
-    fill: '90-#fff-#000'
+    height: 20 
+    bg_fill: '90-#efefef-#e0e0e0-#ececec-#b2b2b2'
+    bar_fill: '90-#aed9ef-#4ba7e5-#9ac6e7-#245ebb'
 
 
   setValue: (value) ->
@@ -84,8 +85,16 @@ class ProgressDisplay
     # We want a Raphaël canvas
     @canvas = Raphael @mate.get()[0], @opts.width, @opts.height
 
+    # Draw a background
+    @bg = @canvas.rect 0, 0, @opts.width, @opts.height, 5
+    @bg.attr
+      fill: @opts.bg_fill
+      'stroke-width': 0
+
     # Draw a bar with no progress
-    @bar = @canvas.rect 0, 0, 0, @opts.height
+    @bar = @canvas.rect 0, 0, 0, @opts.height, 5
     
     # Make it pretty
-    @bar.attr 'fill', @opts.fill
+    @bar.attr
+      fill: @opts.bar_fill
+      'stroke-width': 0
