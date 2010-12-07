@@ -28,6 +28,7 @@
         this.mate = $('<div class="progressmate"></div>');
         this.el.after(this.mate);
         this.setupCanvas();
+        this.setValue();
       }
     }
     ProgressDisplay.prototype.defaults = {
@@ -37,21 +38,23 @@
       width: 160,
       height: 32
     };
-    ProgressDisplay.prototype.makeNamespace = function() {
-      if (Raphael.fn.progressmate == null) {
-        return Raphael.fn.progressmate = {};
-      }
-    };
     ProgressDisplay.prototype.setValue = function(value) {
+      value != null ? value : value = this.opts.value;
       this.value = parseInt(value, 10);
-      return this.el.attr('value', this.value);
+      this.el.attr('value', this.value);
+      return this.showValue();
     };
     ProgressDisplay.prototype.setupCanvas = function() {
-      this.makeNamespace();
       this.canvas = Raphael(this.mate.get()[0], this.opts.width, this.opts.height);
       return this.attackCanvas();
     };
-    ProgressDisplay.prototype.attackCanvas = function() {};
+    ProgressDisplay.prototype.attackCanvas = function() {
+      this.bar = this.canvas.rect(0, 0, this.opts.width, this.opts.height);
+      return this.bar.attr('fill', '90-#fff-#000');
+    };
+    ProgressDisplay.prototype.showValue = function() {
+      return this.bar.attr('width', ((this.value - this.opts.min) / (this.opts.max - this.opts.min)) * this.opts.width);
+    };
     return ProgressDisplay;
   }();
 }).call(this);
