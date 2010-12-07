@@ -73,7 +73,9 @@ class ProgressDisplay
     @el.attr 'value', @value
 
     # Set the size to represent the % of bar's total width
-    @bar.attr 'width', ((@value - @opts.min) / (@opts.max - @opts.min)) * @opts.width
+    width = ((@value - @opts.min) / (@opts.max - @opts.min)) * @opts.width
+    # Animate the transition
+    @bar.animate { width: width }, 600, '<>'
 
 
   # This is just going to call a couple of methods responsible for setting this up
@@ -82,8 +84,8 @@ class ProgressDisplay
     # We want a Raphaël canvas
     @canvas = Raphael @mate.get()[0], @opts.width, @opts.height
 
-    # Draw a bar with full progress
-    @bar = @canvas.rect 0, 0, @opts.width, @opts.height
+    # Draw a bar with no progress
+    @bar = @canvas.rect 0, 0, 0, @opts.height
     
     # Make it pretty
     @bar.attr 'fill', @opts.fill

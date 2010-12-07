@@ -40,14 +40,18 @@
       fill: '90-#fff-#000'
     };
     ProgressDisplay.prototype.setValue = function(value) {
+      var width;
       value != null ? value : value = this.opts.value;
       this.value = parseInt(value, 10);
       this.el.attr('value', this.value);
-      return this.bar.attr('width', ((this.value - this.opts.min) / (this.opts.max - this.opts.min)) * this.opts.width);
+      width = ((this.value - this.opts.min) / (this.opts.max - this.opts.min)) * this.opts.width;
+      return this.bar.animate({
+        width: width
+      }, 600, '<>');
     };
     ProgressDisplay.prototype.setupCanvas = function() {
       this.canvas = Raphael(this.mate.get()[0], this.opts.width, this.opts.height);
-      this.bar = this.canvas.rect(0, 0, this.opts.width, this.opts.height);
+      this.bar = this.canvas.rect(0, 0, 0, this.opts.height);
       return this.bar.attr('fill', this.opts.fill);
     };
     return ProgressDisplay;
