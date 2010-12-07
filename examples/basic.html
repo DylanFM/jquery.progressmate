@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>Example usage</h1>
+    <progress max="100" min="0" value="30">30%</progress>
+    <pre>
+      &lt;progress max="100" min="0" value="30"&gt;
+        30%
+      &lt;/progress&gt;
+    </pre>
+    <script src="../lib/jquery-1.4.4.min.js"></script>
+    <script src="../lib/raphael-min.js"></script>
+    <script src="../src/compiled/jquery.progressmate.js"></script>
+    <script>
+      $(function () {
+        $('progress').progressmate();
+      });
+    </script>
+  </body>
+</html>
