@@ -2,7 +2,7 @@
 
 Make the HTML5 progress element look hot across different browsers with jQuery.progressmate and Raphaël.
 
-This is similar to another plugin I've put together, jQuery.ratemate, for star ratings using HTML5 input elements and the meter element: https://github.com/DylanFM/jquery.ratemate
+This is similar to another plugin I've put together, [jQuery.ratemate](https://github.com/DylanFM/jquery.ratemate), for star ratings using HTML5 input elements and the meter element.
 
 This plugin is being developed in CoffeeScript. Grab the compiled jQuery plugin from src/compiled/.
 
