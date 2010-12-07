@@ -36,24 +36,19 @@
       max: 100,
       min: 0,
       width: 160,
-      height: 32
+      height: 32,
+      fill: '90-#fff-#000'
     };
     ProgressDisplay.prototype.setValue = function(value) {
       value != null ? value : value = this.opts.value;
       this.value = parseInt(value, 10);
       this.el.attr('value', this.value);
-      return this.showValue();
+      return this.bar.attr('width', ((this.value - this.opts.min) / (this.opts.max - this.opts.min)) * this.opts.width);
     };
     ProgressDisplay.prototype.setupCanvas = function() {
       this.canvas = Raphael(this.mate.get()[0], this.opts.width, this.opts.height);
-      return this.attackCanvas();
-    };
-    ProgressDisplay.prototype.attackCanvas = function() {
       this.bar = this.canvas.rect(0, 0, this.opts.width, this.opts.height);
-      return this.bar.attr('fill', '90-#fff-#000');
-    };
-    ProgressDisplay.prototype.showValue = function() {
-      return this.bar.attr('width', ((this.value - this.opts.min) / (this.opts.max - this.opts.min)) * this.opts.width);
+      return this.bar.attr('fill', this.opts.fill);
     };
     return ProgressDisplay;
   }();

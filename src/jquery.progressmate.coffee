@@ -58,6 +58,7 @@ class ProgressDisplay
     min: 0
     width: 160
     height: 32
+    fill: '90-#fff-#000'
 
 
   setValue: (value) ->
@@ -71,8 +72,8 @@ class ProgressDisplay
     # Set it on the element
     @el.attr 'value', @value
 
-    # Show the value
-    @showValue()
+    # Set the size to represent the % of bar's total width
+    @bar.attr 'width', ((@value - @opts.min) / (@opts.max - @opts.min)) * @opts.width
 
 
   # This is just going to call a couple of methods responsible for setting this up
@@ -81,24 +82,8 @@ class ProgressDisplay
     # We want a Raphaël canvas
     @canvas = Raphael @mate.get()[0], @opts.width, @opts.height
 
-    # Paint the picture
-    @attackCanvas()
-
-
-  # We want to make a progress bar
-  attackCanvas: ->
-
     # Draw a bar with full progress
     @bar = @canvas.rect 0, 0, @opts.width, @opts.height
     
     # Make it pretty
-    @bar.attr 'fill', '90-#fff-#000'
-
-
-  # Take the stored value and make the display reflect it
-  showValue: ->
-
-    # Set the size to represent the % of bar's total width
-    @bar.attr 'width', ((@value - @opts.min) / (@opts.max - @opts.min)) * @opts.width
-
-
+    @bar.attr 'fill', @opts.fill
