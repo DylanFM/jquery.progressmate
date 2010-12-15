@@ -7,14 +7,12 @@
         return this.each(function() {
           var attrs, el;
           el = $(this);
-          if (el.is('progress')) {
-            attrs = {
-              max: el.attr('max'),
-              min: el.attr('min'),
-              value: el.attr('value')
-            };
-            return el.data('progressmate', new ProgressDisplay(el, $.extend({}, attrs, opts)));
-          }
+          attrs = {
+            max: el.attr('max'),
+            min: el.attr('min'),
+            value: el.attr('value')
+          };
+          return el.data('progressmate', new ProgressDisplay(el, $.extend({}, attrs, opts)));
         });
       }
     }

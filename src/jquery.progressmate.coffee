@@ -9,16 +9,15 @@ $.fn.extend
       this.each ->
 
         el = $ this
-        if el.is 'progress'
 
-          # Read the attributes and use them as options, but override with passed options
-          attrs =
-            max: el.attr('max')
-            min: el.attr('min')
-            value: el.attr('value')
+        # Read the attributes and use them as options, but override with passed options
+        attrs =
+          max: el.attr('max')
+          min: el.attr('min')
+          value: el.attr('value')
 
-          # Initialise the progress display
-          el.data 'progressmate', new ProgressDisplay el, $.extend {}, attrs, opts 
+        # Initialise the progress display
+        el.data 'progressmate', new ProgressDisplay el, $.extend {}, attrs, opts 
 
 ##################################################
 ##################################################
